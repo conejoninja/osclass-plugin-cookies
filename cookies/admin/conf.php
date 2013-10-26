@@ -4,6 +4,8 @@ if(Params::getParam('plugin_action')=='done') {
     osc_set_preference('analytics_msg', Params::getParam("analytics_msg"), 'cookie', 'STRING');
     osc_set_preference('non_analytics_msg', Params::getParam("non_analytics_msg"), 'cookie', 'STRING');
     osc_set_preference('analytics_id', Params::getParam("analytics_id"), 'cookie', 'STRING');
+    osc_set_preference('policy_link', Params::getParam("policy_link"), 'cookie', 'STRING');
+    osc_set_preference('what_are_link', Params::getParam("what_are_link"), 'cookie', 'STRING');
     osc_set_preference('domain', Params::getParam("domain"), 'cookie', 'STRING');
     osc_set_preference('accept', Params::getParam("accept")==1?1:0, 'cookie', 'BOOLEAN');
     osc_set_preference('decline', Params::getParam("decline")==1?1:0, 'cookie', 'BOOLEAN');
@@ -42,7 +44,7 @@ if(Params::getParam('plugin_action')=='done') {
                         <div class="form-controls">
                             <div class="form-label-checkbox">
                                 <label>
-                                    <input type="checkbox" <?php echo (osc_get_preference('decline', 'cookie') ? 'checked="true"' : ''); ?> name="accept" value="1" />
+                                    <input type="checkbox" <?php echo (osc_get_preference('decline', 'cookie') ? 'checked="true"' : ''); ?> name="decline" value="1" />
                                     <?php _e('Show decline button', 'cookie'); ?>
                                 </label>
                             </div>
@@ -53,7 +55,7 @@ if(Params::getParam('plugin_action')=='done') {
                         <div class="form-controls">
                             <div class="form-label-checkbox">
                                 <label>
-                                    <input type="checkbox" <?php echo (osc_get_preference('reset', 'cookie') ? 'checked="true"' : ''); ?> name="accept" value="1" />
+                                    <input type="checkbox" <?php echo (osc_get_preference('reset', 'cookie') ? 'checked="true"' : ''); ?> name="reset" value="1" />
                                     <?php _e('Show reset button', 'cookie'); ?>
                                 </label>
                             </div>
@@ -70,6 +72,14 @@ if(Params::getParam('plugin_action')=='done') {
                     <div class="form-row">
                         <div class="form-label"><?php _e('Analytics ID', 'cookie'); ?></div>
                         <div class="form-controls"><input type="text" class="xlarge" name="analytics_id" value="<?php echo osc_get_preference('analytics_id', 'cookie'); ?>" /></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-label"><?php _e('Policy link', 'cookie'); ?></div>
+                        <div class="form-controls"><input type="text" class="xlarge" name="policy_link" value="<?php echo osc_get_preference('policy_link', 'cookie'); ?>" /></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-label"><?php _e('What are cookies link', 'cookie'); ?></div>
+                        <div class="form-controls"><input type="text" class="xlarge" name="what_are_link" value="<?php echo osc_get_preference('what_are_link', 'cookie'); ?>" /></div>
                     </div>
                     <div class="clear"></div>
                     <div class="form-actions">
