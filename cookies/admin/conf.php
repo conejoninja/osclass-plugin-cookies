@@ -1,8 +1,8 @@
 <?php
 
 if(Params::getParam('plugin_action')=='done') {
-    osc_set_preference('analytics_msg', Params::getParam("analytics_msg"), 'cookie', 'STRING');
-    osc_set_preference('non_analytics_msg', Params::getParam("non_analytics_msg"), 'cookie', 'STRING');
+    osc_set_preference('analytics_msg', Params::getParam("analytics_msg", false, false), 'cookie', 'STRING');
+    osc_set_preference('non_analytics_msg', Params::getParam("non_analytics_msg", false, false), 'cookie', 'STRING');
     osc_set_preference('analytics_id', Params::getParam("analytics_id"), 'cookie', 'STRING');
     osc_set_preference('policy_link', Params::getParam("policy_link"), 'cookie', 'STRING');
     osc_set_preference('what_are_link', Params::getParam("what_are_link"), 'cookie', 'STRING');

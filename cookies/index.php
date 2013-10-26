@@ -9,6 +9,20 @@ Author URI: http://www.conejo.me/
 Plugin update URI: cookies
 */
 
+/*       This program is free software: you can redistribute it and/or
+ *     modify it under the terms of the GNU Affero General Public License
+ *     as published by the Free Software Foundation, either version 3 of
+ *            the License, or (at your option) any later version.
+ *
+ *     This program is distributed in the hope that it will be useful, but
+ *         WITHOUT ANY WARRANTY; without even the implied warranty of
+ *        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *             GNU Affero General Public License for more details.
+ *
+ *      You should have received a copy of the GNU Affero General Public
+ * License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 
 osc_register_script('jquery-cookie', osc_plugin_url(__FILE__) . 'jquery.cookie.js', array('jquery'));
 osc_register_script('jquery-cookiecuttr', osc_plugin_url(__FILE__) . 'jquery.cookiecuttr.js', array('jquery', 'jquery-cookie'));
@@ -23,10 +37,10 @@ osc_enqueue_script('jquery-cookiecuttr');
             if(osc_get_preference('accept', 'cookie')==1) { echo 'options.cookieAcceptButton = true;'; };
             if(osc_get_preference('decline', 'cookie')==1) { echo 'options.cookieDeclineButton = true;'; };
             if(osc_get_preference('reset', 'cookie')==1) { echo 'options.cookieResetButton = true;'; };
-            echo "options.cookiePolicyLink = '".osc_get_preference('policy_link', 'cookie')."';";
-            echo "options.cookieWhatAreTheyLink = '".osc_get_preference('what_are_link', 'cookie')."';";
-            echo "options.cookieAnalyticsMessage = '".osc_get_preference('analytics_message', 'cookie')."';";
-            echo "options.cookieMessage = '".printf(osc_get_preference('non_analytis_link', 'cookie'), osc_get_preference('policy_link', 'cookie'))."';";
+            echo "options.cookiePolicyLink = '".osc_esc_js(osc_get_preference('policy_link', 'cookie'))."';";
+            echo "options.cookieWhatAreTheyLink = '".osc_esc_js(osc_get_preference('what_are_link', 'cookie'))."';";
+            echo "options.cookieAnalyticsMessage = '".str_replace("'", "\'", osc_get_preference('analytics_msg', 'cookie'))."';";
+            echo "options.cookieMessage = '".str_replace("'", "\'", sprintf(osc_get_preference('non_analytics_msg', 'cookie'), osc_get_preference('policy_link', 'cookie')))."';";
             if(osc_get_preference('analytics_id', 'cookie')!='') { ?>
             options.cookieAnalytics = true;
             if (jQuery.cookie('cc_cookie_decline') == "cc_cookie_decline") {
