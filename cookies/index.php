@@ -1,12 +1,13 @@
 <?php
 /*
 Plugin Name: Cookies warning
-Plugin URI: http://www.conejo.me/
+Plugin URI: https://github.com/conejoninja/osclass-plugin-cookies
 Description: Show a warning message about the cookie usage (Cookie law)
-Version: 0.0.1
+Version: 0.0.2
 Author: _CONEJO
 Author URI: http://www.conejo.me/
 Plugin update URI: cookies
+Support URI: http://forums.osclass.org/plugins/(plugin)-european-cookie-law-plugin-(in-development)/
 */
 
 /*       This program is free software: you can redistribute it and/or
@@ -24,10 +25,10 @@ Plugin update URI: cookies
  */
 
 
-osc_register_script('jquery-cookie', osc_plugin_url(__FILE__) . 'jquery.cookie.js', array('jquery'));
-osc_register_script('jquery-cookiecuttr', osc_plugin_url(__FILE__) . 'jquery.cookiecuttr.js', array('jquery', 'jquery-cookie'));
-osc_enqueue_style('cookiecuttr-style', osc_plugin_url(__FILE__) . 'cookiecuttr.css');
-osc_enqueue_script('jquery-cookiecuttr');
+    osc_register_script('jquery-cookie', osc_plugin_url(__FILE__) . 'jquery.cookie.js', array('jquery'));
+    osc_register_script('jquery-cookiecuttr', osc_plugin_url(__FILE__) . 'jquery.cookiecuttr.js', array('jquery', 'jquery-cookie'));
+    osc_enqueue_style('cookiecuttr-style', osc_plugin_url(__FILE__) . 'cookiecuttr.css');
+    osc_enqueue_script('jquery-cookiecuttr');
 
     function cookie_load() { ?>
         <script type="text/javascript" >
@@ -40,7 +41,7 @@ osc_enqueue_script('jquery-cookiecuttr');
             echo "options.cookiePolicyLink = '".osc_esc_js(osc_get_preference('policy_link', 'cookie'))."';";
             echo "options.cookieWhatAreTheyLink = '".osc_esc_js(osc_get_preference('what_are_link', 'cookie'))."';";
             echo "options.cookieAnalyticsMessage = '".str_replace("'", "\'", osc_get_preference('analytics_msg', 'cookie'))."';";
-            echo "options.cookieMessage = '".str_replace("'", "\'", sprintf(osc_get_preference('non_analytics_msg', 'cookie'), osc_get_preference('policy_link', 'cookie')))."';";
+            echo "options.cookieMessage = '".str_replace("'", "\'", osc_get_preference('non_analytics_msg', 'cookie'))."';";
             if(osc_get_preference('analytics_id', 'cookie')!='') { ?>
             options.cookieAnalytics = true;
             if (jQuery.cookie('cc_cookie_decline') == "cc_cookie_decline") {
@@ -70,7 +71,7 @@ osc_enqueue_script('jquery-cookiecuttr');
 
     function cookie_install() {
         osc_set_preference('analytics_msg', 'We use cookies, just to track visits to our website, we store no personal details.', 'cookie', 'STRING');
-        osc_set_preference('non_analytics_msg', 'We use cookies on this website, you can <a href="%s" title="read about our cookies">read about them here</a>. To use the website as intended please...', 'cookie', 'STRING');
+        osc_set_preference('non_analytics_msg', 'We use cookies on this website, you can <a href="{{cookiePolicyLink}}" title="read about our cookies">read about them here</a>. To use the website as intended please...', 'cookie', 'STRING');
         osc_set_preference('analytics_id', '', 'cookie', 'STRING');
         osc_set_preference('policy_link', osc_base_url(), 'cookie', 'STRING');
         osc_set_preference('what_are_link', 'http://www.allaboutcookies.org/', 'cookie', 'STRING');
