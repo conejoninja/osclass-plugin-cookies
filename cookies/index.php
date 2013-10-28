@@ -3,7 +3,7 @@
 Plugin Name: Cookies warning
 Plugin URI: https://github.com/conejoninja/osclass-plugin-cookies
 Description: Show a warning message about the cookie usage (Cookie law)
-Version: 0.0.2
+Version: 1.0.0
 Author: _CONEJO
 Author URI: http://www.conejo.me/
 Plugin update URI: cookies
